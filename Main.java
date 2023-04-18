@@ -6,8 +6,8 @@ import java.util.zip.*;
 
 public class Main extends directoryReader /*Zip*/{
 
-    static String synchroPath = "C:\\Users\\hecto\\OneDrive\\Documents\\Cours-1A\\Java\\Projet\\Projet-java-v1\\v1.1\\Synchro-Test";
-    static String Path = "C:\\Users\\hecto\\OneDrive\\Documents\\Cours-1A\\Java\\Projet\\Projet-java-v1\\v1.1\\Test";
+    static String synchroPath = ""; // Specify the absolute path of the synchronization directory
+    static String Path = ""; // Fill in the absolute path of the directory to be synchronized
 
     public static void main(String[] args) throws IOException {
         //System.out.println("\\");
