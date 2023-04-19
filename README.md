@@ -1,7 +1,7 @@
 # Projet Java : un cloud
 
 Le projet est à réaliser en binôme, et à rendre pour le **08/05/23**.  
-Le seul outil disponible est **Java**.    
+Le seul outil disponible est **Java**.  
 Les commentaires sont nécessaires pour comprendre le code des autres et fournir une documentation.  
 Les *coding style* sont à respecter.  
 
