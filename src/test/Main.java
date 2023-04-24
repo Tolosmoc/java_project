@@ -1,5 +1,3 @@
-package src;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,7 @@ public class Main extends directoryReader /*Zip*/{
 
         /*
         File fichier;
-        fichier = src.fileChooser.choose();
+        fichier = fileChooser.choose();
         String filePath;
         filePath = fichier.toString();
         System.out.println(filePath);

@@ -18,4 +18,5 @@
 
 
 
-# Ideas :
+# Ideas : 
+- Create a backup system, where you can clone a folder to an archive file (manually and periodically)
