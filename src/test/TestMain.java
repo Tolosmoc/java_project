@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends directoryReader /*Zip*/{
+public class TestMain extends directoryReader /*Zip*/{
 
     static String synchroPath = ""; // Specify the absolute path of the synchronization directory
     static String Path = ""; // Fill in the absolute path of the directory to be synchronized
@@ -22,7 +22,7 @@ public class Main extends directoryReader /*Zip*/{
         //System.out.println("synchro :" + synchroTest);
 
         /*
-        File fichier;
+        Source fichier;
         fichier = fileChooser.choose();
         String filePath;
         filePath = fichier.toString();
@@ -31,7 +31,7 @@ public class Main extends directoryReader /*Zip*/{
         System.out.println(fileName);
         try {
             System.out.println("Zipping" + fileName + " to" + (filePath.substring(0, filePath.length()-3)) + ".zip");
-            File zippedFile = Zip(fileName, filePath, "test.zip");
+            Source zippedFile = Zip(fileName, filePath, "test.zip");
             System.out.println("Zipped : " + zippedFile.getAbsolutePath());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
