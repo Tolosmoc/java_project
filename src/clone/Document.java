@@ -45,8 +45,8 @@ public class Document {
     public boolean delete() {return (new File(path)).delete();}
     public boolean equals(Object other) {return ((Document) other).getName().equals(this.name) && ((Document) other).getDate() == this.date;}
     public void saveTo(String path) throws IOException {
-        File dir = new File(path);
-        if (dir.isDirectory()) {
+        File directory = new File(path);
+        if (directory.isDirectory()) {
             Files.write(Path.of(path + "\\" + this.name), this.content);
             (new File(path + "\\" + this.name)).setLastModified(this.date);
         }

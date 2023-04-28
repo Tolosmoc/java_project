@@ -7,6 +7,6 @@ public class Main {
         String source = "C:\\Users\\pgien\\Documents\\Cours\\Semestre 6\\Object-Oriented Programming with Java\\Projet Java\\java_project\\.debug\\source";
         String target = "C:\\Users\\pgien\\Documents\\Cours\\Semestre 6\\Object-Oriented Programming with Java\\Projet Java\\java_project\\.debug\\target";
 
-        (new Directory(source)).saveTo(target);
+        (new Directory(source)).cloneTo(target);
     }
 }

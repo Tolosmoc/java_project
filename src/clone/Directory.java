@@ -55,11 +55,41 @@ public class Directory {
         for (Directory dir : dirs) dir.delete();
         return (new File(path)).delete();
     }
+    public boolean contains(String name) {
+        for (Document doc : docs) {
+            if (doc.getName().equals(name)) return true;
+        }
+        return false;
+    }
+    public Document getDocument(String name) {
+        for (Document doc : docs) {
+            if (doc.getName().equals(name)) return doc;
+        }
+        return null;
+    }
     public void saveTo(String path) throws IOException {
         File directory = new File(path + "\\" + this.name);
         if (directory.mkdir()) {
             for (Document doc : docs) doc.saveTo(directory.getAbsolutePath());
             for (Directory dir : dirs) dir.saveTo(directory.getAbsolutePath());
         }
+    }
+    public void cloneTo(String path) throws IOException {
+        File directory = new File(path + "\\" + this.name);
+        if (directory.isDirectory()) {
+            Directory targetDirectory = new Directory(directory.getAbsolutePath());
+            for (Document doc : docs) {
+                if (targetDirectory.contains(doc.getName())) {
+                    Document targetDocument = targetDirectory.getDocument(doc.getName());
+                    if (!doc.equals(targetDocument)) {
+                        targetDocument.delete();
+                        doc.saveTo(targetDirectory.getPath());
+                    }
+                } else doc.saveTo(targetDirectory.getPath());
+            }
+            for (Directory dir : dirs) {
+                dir.cloneTo(targetDirectory.getPath());
+            }
+        } else this.saveTo(path);
     }
 }
