@@ -1,47 +1,65 @@
 package clone;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
 import java.util.Objects;
 
 public class Directory {
-    private String path;
     private String name;
-    private List<Document> documentList;
-    private List<Directory> directoryList;
+    private String path;
+    private Directory parent;
+    private List<Document> docs;
+    private List<Directory> dirs;
 
-    public void delete() {
-        for(Document doc : documentList) {
-            doc.delete();
-        }
-        for(Directory dir : directoryList) {
-            (new File(dir.path)).delete();
-            dir.delete();
-        }
-        (new File(path)).delete();
-    }
-    public void cloneTo(String path) throws IOException {
-        File directory = new File(path + '\\' + name);
-        if (directory.isDirectory()) (new Directory(directory.getAbsolutePath())).delete();
-        if (directory.mkdir()) {
-            for(Document doc : documentList) doc.saveTo(directory.getAbsolutePath());
-            for(Directory dir : directoryList) dir.cloneTo(directory.getAbsolutePath());
-        }
-    }
+    public String getName() {return name;}
+    public String getPath() {return path;}
+    public Directory getParent() {return parent;}
+    public List<Document> getDocs() {return docs;}
+    public List<Directory> getDirs() {return dirs;}
 
-    public Directory(String path) {
+    public Directory(String path, Directory parent) throws IOException {
         File directory = new File(path);
-        this.path = path;
         this.name = directory.getName();
-        this.documentList = new ArrayList<>();
-        this.directoryList = new ArrayList<>();
+        this.path = directory.getAbsolutePath();
+        this.parent = parent;
+        this.docs = new ArrayList<>();
+        this.dirs = new ArrayList<>();
+
         if (directory.isDirectory()) {
-            for(File file : Objects.requireNonNull(directory.listFiles())) {
-                if (file.isFile()) this.documentList.add(new Document(file.getAbsolutePath()));
-                else if (file.isDirectory()) this.directoryList.add(new Directory(file.getAbsolutePath()));
+            for (File file : Objects.requireNonNull(directory.listFiles())) {
+                if (file.isFile()) this.docs.add(new Document(file.getAbsolutePath(), this));
+                else if (file.isDirectory()) this.dirs.add(new Directory(this.path + "\\" + file.getName(), this));
             }
+        }
+    }
+    public Directory(String path) throws IOException {
+        File directory = new File(path);
+        this.name = directory.getName();
+        this.path = directory.getAbsolutePath();
+        this.parent = null;
+        this.docs = new ArrayList<>();
+        this.dirs = new ArrayList<>();
+
+        if (directory.isDirectory()) {
+            for (File file : Objects.requireNonNull(directory.listFiles())) {
+                if (file.isFile()) this.docs.add(new Document(file.getAbsolutePath(), this));
+                else if (file.isDirectory()) this.dirs.add(new Directory(this.path + "\\" + file.getName(), this));
+            }
+        }
+    }
+
+    public boolean delete() {
+        for (Document doc : docs) doc.delete();
+        for (Directory dir : dirs) dir.delete();
+        return (new File(path)).delete();
+    }
+    public void saveTo(String path) throws IOException {
+        File directory = new File(path + "\\" + this.name);
+        if (directory.mkdir()) {
+            for (Document doc : docs) doc.saveTo(directory.getAbsolutePath());
+            for (Directory dir : dirs) dir.saveTo(directory.getAbsolutePath());
         }
     }
 }
