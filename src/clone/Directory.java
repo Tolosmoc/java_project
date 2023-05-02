@@ -50,14 +50,24 @@ public class Directory {
         }
     }
 
+    public boolean removeDoc(Document document) {return this.docs.remove(document);}
+    public boolean removeDir(Directory directory) {return this.dirs.remove(directory);}
     public boolean delete() {
         for (Document doc : docs) doc.delete();
-        for (Directory dir : dirs) dir.delete();
+        for (Directory dir : dirs) {
+            dir.delete();
+        }
         return (new File(path)).delete();
     }
-    public boolean contains(String name) {
+    public boolean containsDoc(String name) {
         for (Document doc : docs) {
             if (doc.getName().equals(name)) return true;
+        }
+        return false;
+    }
+    public boolean containsDir(String name) {
+        for (Directory dir : dirs) {
+            if (dir.getName().equals(name)) return true;
         }
         return false;
     }
@@ -78,8 +88,14 @@ public class Directory {
         File directory = new File(path + "\\" + this.name);
         if (directory.isDirectory()) {
             Directory targetDirectory = new Directory(directory.getAbsolutePath());
+            for (Document doc : targetDirectory.getDocs()) {
+                if (!this.containsDoc(doc.getName())) doc.delete();
+            }
+            for (Directory dir : targetDirectory.getDirs()) {
+                if (!this.containsDir(dir.getName())) dir.delete();
+            }
             for (Document doc : docs) {
-                if (targetDirectory.contains(doc.getName())) {
+                if (targetDirectory.containsDoc(doc.getName())) {
                     Document targetDocument = targetDirectory.getDocument(doc.getName());
                     if (!doc.equals(targetDocument)) {
                         targetDocument.delete();

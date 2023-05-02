@@ -42,7 +42,9 @@ public class Document {
         this.content = Files.readAllBytes(Path.of(file.getAbsolutePath()));
     }
 
-    public boolean delete() {return (new File(path)).delete();}
+    public boolean delete() {
+        return (new File(path)).delete();
+    }
     public boolean equals(Object other) {return ((Document) other).getName().equals(this.name) && ((Document) other).getDate() == this.date;}
     public void saveTo(String path) throws IOException {
         File directory = new File(path);
