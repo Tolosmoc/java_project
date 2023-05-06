@@ -28,4 +28,4 @@
 
 
 # Ideas : 
-- Create a backup system, where you can clone a folder to an archive file (manually and periodically)
+- Create a backup system, where you can file a folder to an archive file (manually and periodically)

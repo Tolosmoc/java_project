@@ -1,4 +1,4 @@
-package clone;
+package file;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +17,9 @@ public class Document {
     public Directory getParent() {return parent;}
     public long getDate() {return date;}
     public byte[] getContent() {return content;}
+
+    public void setDate(long date) {this.date = date;}
+    public void setContent(byte[] content) {this.content = content;}
 
     public Document(String name, String path, Directory parent, long date, byte[] content) {
         this.name = name;

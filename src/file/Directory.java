@@ -1,6 +1,8 @@
-package clone;
+package file;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -10,12 +12,15 @@ public class Directory {
     private String name;
     private String path;
     private Directory parent;
+    private long date;
     private List<Document> docs;
     private List<Directory> dirs;
 
     public String getName() {return name;}
     public String getPath() {return path;}
     public Directory getParent() {return parent;}
+    public long getDate() {return date;}
+
     public List<Document> getDocs() {return docs;}
     public List<Directory> getDirs() {return dirs;}
 
@@ -24,6 +29,7 @@ public class Directory {
         this.name = directory.getName();
         this.path = directory.getAbsolutePath();
         this.parent = parent;
+        this.date = directory.lastModified();
         this.docs = new ArrayList<>();
         this.dirs = new ArrayList<>();
 
@@ -39,6 +45,7 @@ public class Directory {
         this.name = directory.getName();
         this.path = directory.getAbsolutePath();
         this.parent = null;
+        this.date = directory.lastModified();
         this.docs = new ArrayList<>();
         this.dirs = new ArrayList<>();
 
@@ -52,6 +59,8 @@ public class Directory {
 
     public boolean removeDoc(Document document) {return this.docs.remove(document);}
     public boolean removeDir(Directory directory) {return this.dirs.remove(directory);}
+    public void addDoc(Document document) {this.docs.add(document);}
+    public void addDir(Directory directory) {this.dirs.add(directory);}
     public boolean delete() {
         for (Document doc : docs) doc.delete();
         for (Directory dir : dirs) {
@@ -104,8 +113,13 @@ public class Directory {
                 } else doc.saveTo(targetDirectory.getPath());
             }
             for (Directory dir : dirs) {
-                dir.cloneTo(targetDirectory.getPath());
+                if (dir.getDate() != targetDirectory.getDate()) dir.cloneTo(targetDirectory.getPath());
             }
         } else this.saveTo(path);
+    }
+    public void update() throws IOException {
+        Directory newDir = new Directory(this.path);
+        this.docs = newDir.getDocs();
+        this.dirs = newDir.getDirs();
     }
 }
