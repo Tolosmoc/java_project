@@ -8,6 +8,11 @@ public class Clone extends Thread {
     private Directory source;
     private Directory target;
 
+    public Clone(String source, String target) throws IOException {
+        this.duration = 0;
+        this.source = new Directory(source);
+        this.target = new Directory(target);
+    }
     public Clone(Integer duration, String source, String target) throws IOException {
         this.duration = duration;
         this.source = new Directory(source);
