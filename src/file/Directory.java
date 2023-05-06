@@ -15,14 +15,20 @@ public class Directory {
     private long date;
     private List<Document> docs;
     private List<Directory> dirs;
+    private boolean updated = true;
 
     public String getName() {return name;}
     public String getPath() {return path;}
     public Directory getParent() {return parent;}
     public long getDate() {return date;}
-
     public List<Document> getDocs() {return docs;}
     public List<Directory> getDirs() {return dirs;}
+    public boolean getUpdated() {return updated;}
+
+    public void setUpdated(boolean updated) {
+        if (this.parent == null) this.updated = updated;
+        else this.parent.setUpdated(updated);
+    }
 
     public Directory(String path, Directory parent) throws IOException {
         File directory = new File(path);
@@ -74,9 +80,21 @@ public class Directory {
         }
         return false;
     }
+    public boolean containsDoc(String name, long date) {
+        for (Document doc : docs) {
+            if (doc.getName().equals(name) && doc.getDate() == date) return true;
+        }
+        return false;
+    }
     public boolean containsDir(String name) {
         for (Directory dir : dirs) {
             if (dir.getName().equals(name)) return true;
+        }
+        return false;
+    }
+    public boolean containsDir(String name, long date) {
+        for (Directory dir : dirs) {
+            if (dir.getName().equals(name) && dir.getDate() == date) return true;
         }
         return false;
     }
@@ -121,5 +139,30 @@ public class Directory {
         Directory newDir = new Directory(this.path);
         this.docs = newDir.getDocs();
         this.dirs = newDir.getDirs();
+    }
+    public Object scan() throws IOException {
+        if ((new File(this.path)).isDirectory()) {
+            Directory source = new Directory(this.path);
+            for (Document doc : source.getDocs()) {
+                if (!this.docs.contains(doc)) {
+                    this.setUpdated(false);
+                    return null;
+                }
+            }
+            for (Document doc : this.docs) {
+                if (!source.getDocs().contains(doc)) {
+                    this.setUpdated(false);
+                    return null;
+                }
+            }
+            for (Directory dir : source.getDirs()) {
+                if (!this.containsDir(dir.getName(), dir.getDate())) {
+                    this.setUpdated(false);
+                    return null;
+                }
+            }
+            for (Directory dir : this.dirs) dir.scan();
+        }
+        return null;
     }
 }
