@@ -15,6 +15,9 @@ public class Software extends javax.swing.JFrame {
     JFileChooser chooser;
     String chooserTitle;
     int duration;
+    Synchronize sync1;
+    Synchronize sync2;
+    Clone clone;
     
     public Software(String User, String IPadress) {
         this.setUndecorated(true);
@@ -734,9 +737,9 @@ public class Software extends javax.swing.JFrame {
         String target = targetPathSynchro.getText();
         String source = sourcePathSynchro.getText();
         if(!(target.equals("") || target.equals(source) || source.equals(""))){
-            Synchronize sync1 = new Synchronize(source, target);
-            Synchronize sync2 = sync1.inverse();
             if(launchSynchro.getText() == "LAUNCH"){
+                sync1 = new Synchronize(source, target);
+                sync2 = sync1.inverse();
                 sync1.init();
                 sync2.init();
                 sync1.start();
@@ -780,8 +783,8 @@ public class Software extends javax.swing.JFrame {
                 else{ // Timer
                     duration = ((Integer) hour.getValue() * 3600 + (Integer) minute.getValue() * 60 + (Integer) second.getValue()) * 1000;
                 }
-                Clone clone = new Clone(duration, source, target);
                 if (launchTimingSynchro.getText() == "LAUNCH") {
+                    clone = new Clone(duration, source, target);
                     clone.start();
                     sourceBtnTimer.setVisible(false);
                     targetBtnTimer.setVisible(false);
