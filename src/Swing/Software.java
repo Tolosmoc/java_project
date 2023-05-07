@@ -543,7 +543,7 @@ public class Software extends javax.swing.JFrame {
                 .addGap(331, 331, 331))
         );
 
-        CardTab.add(JavaCloudCard, "HistoryCard");
+        CardTab.add(JavaCloudCard, "javaCloudCard");
 
         jSplitPane2.setRightComponent(CardTab);
 
@@ -702,7 +702,7 @@ public class Software extends javax.swing.JFrame {
     }
 
     private void JavaCloudBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        cardLayout.show(CardTab, "HistoryCard");
+        cardLayout.show(CardTab, "javaCloudCard");
     }
 
     private void ZipBtnActionPerformed(java.awt.event.ActionEvent evt) {
