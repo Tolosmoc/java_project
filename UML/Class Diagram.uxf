@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.0.0">
-  <zoom_level>8</zoom_level>
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=10
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>12</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>136</x>
-      <y>104</y>
-      <w>352</w>
-      <h>272</h>
+      <x>852</x>
+      <y>156</y>
+      <w>528</w>
+      <h>408</h>
     </coordinates>
     <panel_attributes>Document
 --
@@ -36,10 +60,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>504</x>
-      <y>104</y>
-      <w>264</w>
-      <h>552</h>
+      <x>288</x>
+      <y>72</y>
+      <w>396</w>
+      <h>612</h>
     </coordinates>
     <panel_attributes>Directory
 --
@@ -49,7 +73,7 @@
 - date: long
 - docs: List&lt;Document&gt;
 - dirs: List&lt;Directory&gt;
-- updated: boolean
+- updated: boolean  = true
 --
 + getName(): String
 + getPath(): String
@@ -87,10 +111,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>136</x>
-      <y>400</y>
-      <w>352</w>
-      <h>120</h>
+      <x>288</x>
+      <y>864</y>
+      <w>528</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>Clone
 --
@@ -107,15 +131,16 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>136</x>
-      <y>544</y>
-      <w>352</w>
-      <h>240</h>
+      <x>852</x>
+      <y>684</y>
+      <w>528</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>Synchronize
 --
 _- threads: List&lt;Synchronize&gt;_
 
+- state: boolean = false
 - source: Directory
 - target: Directory
 --
@@ -136,12 +161,97 @@ _+ getSync(source: Directory): Synchronize_
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>112</x>
-      <y>64</y>
-      <w>680</w>
-      <h>744</h>
+      <x>240</x>
+      <y>0</y>
+      <w>1212</w>
+      <h>1116</h>
     </coordinates>
     <panel_attributes>file</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>252</y>
+      <w>204</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0...N
+parent &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>24</y>
+      <w>204</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0...N
+&lt; parent</panel_attributes>
+    <additional_attributes>60.0;90.0;110.0;90.0;110.0;10.0;10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>492</x>
+      <y>708</y>
+      <w>120</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Thread</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>732</y>
+      <w>84</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>696</y>
+      <w>276</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1128</x>
+      <y>552</y>
+      <w>36</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>384</y>
+      <w>108</w>
+      <h>504</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>70.0;10.0;10.0;10.0;10.0;400.0</additional_attributes>
   </element>
 </diagram>
