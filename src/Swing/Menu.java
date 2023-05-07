@@ -39,7 +39,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(74, 31, 61));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\Swing\\icons\\logo.png"));
+        jLabel6.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\Swing\\icons\\logo.png"));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24));
         jLabel7.setForeground(new java.awt.Color(186, 79, 84));
@@ -113,10 +113,10 @@ public class Menu extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\Swing\\icons\\user.png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\Swing\\icons\\user.png"));
         jLabel1.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\Swing\\icons\\network.png"));
+        jLabel2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\Swing\\icons\\network.png"));
         jLabel2.setPreferredSize(new java.awt.Dimension(40, 40));
 
         jPanel5.setBackground(new java.awt.Color(186, 79, 84));

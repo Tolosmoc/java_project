@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import static Swing.file.Zip.zipFile;
+import static file.Zip.zipFile;
 
 public class Software extends javax.swing.JFrame {
 
