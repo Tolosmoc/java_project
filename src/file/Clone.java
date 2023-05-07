@@ -8,12 +8,12 @@ public class Clone extends Thread {
     private Directory source;
     private Directory target;
 
-    public Clone(String source, String target) throws IOException {
+    public Clone(String source, String target) {
         this.duration = 0;
         this.source = new Directory(source);
         this.target = new Directory(target);
     }
-    public Clone(Integer duration, String source, String target) throws IOException {
+    public Clone(Integer duration, String source, String target) {
         this.duration = duration;
         this.source = new Directory(source);
         this.target = new Directory(target);
@@ -27,18 +27,14 @@ public class Clone extends Thread {
                     this.source.cloneTo(this.target.getPath());
                     sleep(duration);
                 }
-            } catch (IOException | InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
     }
     public void doOnce() {
         if ((new File(this.source.getPath())).isDirectory() && (new File(this.target.getPath())).isDirectory()) {
-            try {
-                this.source.cloneTo(this.target.getPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.source.cloneTo(this.target.getPath());
         }
     }
 }
