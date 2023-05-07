@@ -1,8 +1,6 @@
 package file;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -30,6 +28,8 @@ public class Directory {
         else this.parent.setUpdated(updated);
     }
 
+    public void setParent(Directory parent) {this.parent = parent;}
+
     public Directory(String path, Directory parent) throws IOException {
         File directory = new File(path);
         this.name = directory.getName();
@@ -39,7 +39,7 @@ public class Directory {
         this.docs = new ArrayList<>();
         this.dirs = new ArrayList<>();
 
-        if (directory.isDirectory()) {
+        if (directory.isDirectory() && directory.listFiles() != null) {
             for (File file : Objects.requireNonNull(directory.listFiles())) {
                 if (file.isFile()) this.docs.add(new Document(file.getAbsolutePath(), this));
                 else if (file.isDirectory()) this.dirs.add(new Directory(this.path + "\\" + file.getName(), this));
@@ -55,7 +55,7 @@ public class Directory {
         this.docs = new ArrayList<>();
         this.dirs = new ArrayList<>();
 
-        if (directory.isDirectory()) {
+        if (directory.isDirectory() && directory.listFiles() != null) {
             for (File file : Objects.requireNonNull(directory.listFiles())) {
                 if (file.isFile()) this.docs.add(new Document(file.getAbsolutePath(), this));
                 else if (file.isDirectory()) this.dirs.add(new Directory(this.path + "\\" + file.getName(), this));
@@ -105,14 +105,22 @@ public class Directory {
         return null;
     }
     public void saveTo(String path) throws IOException {
-        File directory = new File(path + "\\" + this.name);
-        if (directory.mkdir()) {
+        if (parent == null) {
+            File directory = new File(path);
             for (Document doc : docs) doc.saveTo(directory.getAbsolutePath());
             for (Directory dir : dirs) dir.saveTo(directory.getAbsolutePath());
+        } else {
+            File directory = new File(path + "\\" + this.name);
+            if (directory.mkdir()) {
+                for (Document doc : docs) doc.saveTo(directory.getAbsolutePath());
+                for (Directory dir : dirs) dir.saveTo(directory.getAbsolutePath());
+            }
         }
     }
     public void cloneTo(String path) throws IOException {
-        File directory = new File(path + "\\" + this.name);
+        File directory;
+        if (this.parent == null) directory = new File(path);
+        else directory = new File(path + "\\" + this.name);
         if (directory.isDirectory()) {
             Directory targetDirectory = new Directory(directory.getAbsolutePath());
             for (Document doc : targetDirectory.getDocs()) {
@@ -139,30 +147,38 @@ public class Directory {
         Directory newDir = new Directory(this.path);
         this.docs = newDir.getDocs();
         this.dirs = newDir.getDirs();
+        this.updated = true;
+        for (Document doc : this.docs) doc.setParent(this);
+        for (Directory dir : this.dirs) dir.setParent(this);
     }
-    public Object scan() throws IOException {
+    public void scan() throws IOException {
         if ((new File(this.path)).isDirectory()) {
             Directory source = new Directory(this.path);
             for (Document doc : source.getDocs()) {
-                if (!this.docs.contains(doc)) {
+                if (!this.containsDoc(doc.getName(), doc.getDate())) {
                     this.setUpdated(false);
-                    return null;
+                    return;
                 }
             }
             for (Document doc : this.docs) {
-                if (!source.getDocs().contains(doc)) {
+                if (!source.containsDoc(doc.getName(), doc.getDate())) {
                     this.setUpdated(false);
-                    return null;
+                    return;
                 }
             }
             for (Directory dir : source.getDirs()) {
                 if (!this.containsDir(dir.getName(), dir.getDate())) {
                     this.setUpdated(false);
-                    return null;
+                    return;
                 }
             }
-            for (Directory dir : this.dirs) dir.scan();
+            for (Directory dir : this.dirs) {
+                if (!source.containsDir(dir.getName(), dir.getDate())) {
+                    this.setUpdated(false);
+                    return;
+                }
+                dir.scan();
+            }
         }
-        return null;
     }
 }

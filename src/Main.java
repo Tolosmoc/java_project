@@ -1,5 +1,6 @@
 import file.Clone;
 import Swing.Menu;
+import file.Synchronize;
 
 import java.io.IOException;
 
@@ -8,7 +9,14 @@ public class Main {
         String source = "C:\\Users\\pgien\\Documents\\Cours\\Semestre 6\\Object-Oriented Programming with Java\\Projet Java\\java_project\\.debug\\source";
         String target = "C:\\Users\\pgien\\Documents\\Cours\\Semestre 6\\Object-Oriented Programming with Java\\Projet Java\\java_project\\.debug\\target";
 
-        new Clone(3000, source, target).start();
+        Synchronize sync1 = new Synchronize(source, target);
+        Synchronize sync2 = sync1.inverse();
+
+        sync1.init();
+        sync2.init();
+
+        sync1.start();
+        sync2.start();
         
         /*
         // to show the GUI:
