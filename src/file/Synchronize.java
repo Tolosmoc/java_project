@@ -21,7 +21,7 @@ public class Synchronize extends Thread {
     private final Directory source;
     private final Directory target;
 
-    public Synchronize(String source, String target) throws IOException {
+    public Synchronize(String source, String target) {
         this.source = new Directory(source);
         this.target = new Directory(target);
         Synchronize.threads.add(this);
@@ -39,7 +39,7 @@ public class Synchronize extends Thread {
     public Synchronize inverse() {
         return new Synchronize(this.source, this.target);
     }
-    public void init() throws IOException {
+    public void init() {
         for (Document doc : source.getDocs()) {
             doc.saveTo(target.getPath());
         }
@@ -62,7 +62,7 @@ public class Synchronize extends Thread {
                         this.state = false;
                     }
                 }
-            } catch (IOException | InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }

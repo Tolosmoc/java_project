@@ -44,7 +44,7 @@ public class Document {
         this.date = date;
     }
 
-    public Document(String path, Directory parent) throws IOException {
+    public Document(String path, Directory parent) {
         File file = new File(path);
         this.name = file.getName();
         this.path = file.getAbsolutePath();
@@ -52,7 +52,7 @@ public class Document {
         this.date = file.lastModified();
     }
 
-    public Document(String path) throws IOException {
+    public Document(String path) {
         File file = new File(path);
         this.name = file.getName();
         this.path = file.getAbsolutePath();
