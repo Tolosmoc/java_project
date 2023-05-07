@@ -6,6 +6,11 @@ import java.io.File;
 import java.util.Objects;
 
 public class Directory {
+    /*
+     * Basic representation of a folder, which allows some operations to be done
+     */
+
+    /* ATTRIBUTES */
     private String name;
     private String path;
     private Directory parent;
@@ -14,6 +19,7 @@ public class Directory {
     private List<Directory> dirs;
     private boolean updated = true;
 
+    /* GETTERS */
     public String getName() {return name;}
     public String getPath() {return path;}
     public Directory getParent() {return parent;}
@@ -22,13 +28,14 @@ public class Directory {
     public List<Directory> getDirs() {return dirs;}
     public boolean getUpdated() {return updated;}
 
+    /* SETTERS */
     public void setUpdated(boolean updated) {
         if (this.parent == null) this.updated = updated;
         else this.parent.setUpdated(updated);
     }
-
     public void setParent(Directory parent) {this.parent = parent;}
 
+    /* CONSTRUCTORS */
     public Directory(String path, Directory parent) {
         File directory = new File(path);
         this.name = directory.getName();
@@ -62,17 +69,21 @@ public class Directory {
         }
     }
 
+    /* OPERATIONS */
+    /* These operations are used to add or delete a Document or a Directory from their parent's list */
     public boolean removeDoc(Document document) {return this.docs.remove(document);}
     public boolean removeDir(Directory directory) {return this.dirs.remove(directory);}
     public void addDoc(Document document) {this.docs.add(document);}
     public void addDir(Directory directory) {this.dirs.add(directory);}
     public boolean delete() {
+        /* Delete recursively a Directory from the disk */
         for (Document doc : docs) doc.delete();
         for (Directory dir : dirs) {
             dir.delete();
         }
         return (new File(path)).delete();
     }
+    /* These operations check if a Directory contains a Document or a Directory based on their name and/or their date */
     public boolean containsDoc(String name) {
         for (Document doc : docs) {
             if (doc.getName().equals(name)) return true;
@@ -98,12 +109,14 @@ public class Directory {
         return false;
     }
     public Document getDocument(String name) {
+        /* Returns a Document object using its name */
         for (Document doc : docs) {
             if (doc.getName().equals(name)) return doc;
         }
         return null;
     }
     public void saveTo(String path) {
+        /* Save the folder recursively to the given path on disk */
         if (parent == null) {
             File directory = new File(path);
             for (Document doc : docs) doc.saveTo(directory.getAbsolutePath());
@@ -117,6 +130,7 @@ public class Directory {
         }
     }
     public void cloneTo(String path) {
+        /* Copy a folder recursively to the given path. The targeted directory becomes a complete image of the source */
         File directory;
         if (this.parent == null) directory = new File(path);
         else directory = new File(path + "\\" + this.name);
@@ -144,6 +158,7 @@ public class Directory {
         } else this.saveTo(path);
     }
     public void update() {
+        /* Refresh the content of the Directory based on the source folder on disk */
         Directory newDir = null;
         newDir = new Directory(this.path);
         this.docs = newDir.getDocs();
@@ -153,6 +168,7 @@ public class Directory {
         for (Directory dir : this.dirs) dir.setParent(this);
     }
     public void scan() {
+        /* Checks if there is some modification to the content of the folder on the disk */
         if ((new File(this.path)).isDirectory()) {
             Directory source = null;
             source = new Directory(this.path);

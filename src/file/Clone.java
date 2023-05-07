@@ -3,10 +3,16 @@ package file;
 import java.io.File;
 
 public class Clone extends Thread {
+    /*
+     * Clone class - Used to clone a directory once or automatically to a given path
+     */
+
+    /* ATTRIBUTES */
     private Integer duration;
     private Directory source;
     private Directory target;
 
+    /* CONSTRUCTORS */
     public Clone(String source, String target) {
         this.duration = 0;
         this.source = new Directory(source);
@@ -18,7 +24,9 @@ public class Clone extends Thread {
         this.target = new Directory(target);
     }
 
+    /* OPERATIONS */
     public void run() {
+        /* Clone automatically the source folder to the target path every t ms, with t = this.duration */
         if ((new File(this.source.getPath())).isDirectory() && (new File(this.target.getPath())).isDirectory()) {
             try {
                 while(true) {
@@ -32,6 +40,7 @@ public class Clone extends Thread {
         }
     }
     public void doOnce() {
+        /* Clone only once the source folder to the target path */
         if ((new File(this.source.getPath())).isDirectory() && (new File(this.target.getPath())).isDirectory()) {
             this.source.cloneTo(this.target.getPath());
         }
