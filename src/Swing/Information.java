@@ -1,96 +1,99 @@
 package Swing;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import net.miginfocom.swing.*;
+public class Information extends javax.swing.JFrame {
 
-public class Information extends JFrame {
     public Information() {
         initComponents();
+        this.setVisible(true);
     }
 
     private void initComponents() {
-        dialogPane = new JPanel();
-        contentPanel = new JPanel();
-        textField1 = new JTextField();
-        textPane1 = new JTextPane();
-        buttonBar = new JPanel();
-        button1 = new JButton();
-        Close = new Close();
 
-        setTitle("Swing.Information");
-        setAlwaysOnTop(true);
-        var contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
-        {
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-            . border. EmptyBorder( 0, 0, 0, 0) , "", javax. swing. border. TitledBorder
-            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .
-            awt .Font .BOLD ,12 ), java. awt. Color. red) ,dialogPane. getBorder( )) )
-            ; dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-            ;
-            dialogPane.setLayout(new BorderLayout());
+        jPanel1.setBackground(new java.awt.Color(74, 31, 61));
 
-            {
-                contentPanel.setLayout(new MigLayout(
-                    "fill,insets dialog,hidemode 3,align center center",
-                    // columns
-                    "[fill]" +
-                    "[fill]" +
-                    "[fill]",
-                    // rows
-                    "[]" +
-                    "[]" +
-                    "[]"));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24));
+        jLabel1.setForeground(new java.awt.Color(186, 79, 84));
+        jLabel1.setText("         Information");
 
-                textField1.setText("Welcome to [name].");
-                textField1.setEditable(false);
-                textField1.setBorder(null);
-                textField1.setFont(new Font("Segoe UI", Font.BOLD, 20));
-                contentPanel.add(textField1, "cell 1 0,align center top,grow 0 0");
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(186, 79, 84));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 12));
+        jTextArea1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("\n  Java  Cloud  is  a  synchronization\n  application    created    by   Pierre\n  GIEN and Guilhem LACASSAGNE.");
+        jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextArea1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        jTextArea1.setEnabled(false);
+        jScrollPane1.setViewportView(jTextArea1);
 
-                textPane1.setText("[Name] is synchronization application\ncreated  by  Pierre GIEN  and Guilhem\nLACASSAGNE.");
-                textPane1.setEditable(false);
-                contentPanel.add(textPane1, "cell 1 1,aligny top,grow 100 0");
+        jButton1.setBackground(new java.awt.Color(186, 79, 84));
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setText("Ok");
+        jButton1.setBorder(null);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
-            dialogPane.add(contentPanel, BorderLayout.CENTER);
+        });
 
-            {
-                buttonBar.setLayout(new MigLayout(
-                    "insets dialog,alignx right",
-                    // columns
-                    "[button,fill]",
-                    // rows
-                    null));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
 
-                button1.setAction(Close);
-                buttonBar.add(button1, "cell 0 0");
-            }
-            dialogPane.add(buttonBar, BorderLayout.SOUTH);
-        }
-        contentPane.add(dialogPane, BorderLayout.CENTER);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         pack();
-        setLocationRelativeTo(getOwner());
+        setLocationRelativeTo(null);
     }
 
-    private JPanel dialogPane;
-    private JPanel contentPanel;
-    private JTextField textField1;
-    private JTextPane textPane1;
-    private JPanel buttonBar;
-    private JButton button1;
-    private Close Close;
-
-    private class Close extends AbstractAction {
-        private Close() {
-            putValue(NAME, "Ok");
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            Information.this.dispose() ;
-        }
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {
+        this.setVisible(false);
     }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    // End of variables declaration//GEN-END:variables
 }
