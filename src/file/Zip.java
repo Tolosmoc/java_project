@@ -1,4 +1,4 @@
-package Swing.file;
+package file;
 
 import java.io.*;
 import java.util.zip.*;
