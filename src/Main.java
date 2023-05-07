@@ -1,6 +1,4 @@
 import Swing.Menu;
-//import file.Synchronize;
-//import file.Clone;
 
 import java.io.IOException;
 
