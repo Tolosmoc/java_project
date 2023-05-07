@@ -1,4 +1,5 @@
 import file.Clone;
+import Swing.Menu;
 
 import java.io.IOException;
 
@@ -8,5 +9,11 @@ public class Main {
         String target = "C:\\Users\\pgien\\Documents\\Cours\\Semestre 6\\Object-Oriented Programming with Java\\Projet Java\\java_project\\.debug\\target";
 
         new Clone(3000, source, target).start();
+        
+        /*
+        // to show the GUI:
+        Menu menu = new Menu();
+        menu.Menu();
+        */
     }
 }
