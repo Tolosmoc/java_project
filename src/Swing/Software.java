@@ -222,7 +222,7 @@ public class Software extends javax.swing.JFrame {
         targetPathTimer.setMaximumSize(new java.awt.Dimension(64, 22));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 24));
-        jLabel6.setText("Timing synchronization");
+        jLabel6.setText("Clone");
 
         launchTimingSynchro.setBackground(new java.awt.Color(186, 79, 84));
         launchTimingSynchro.setFont(new java.awt.Font("Segoe UI", 1, 18));
@@ -564,7 +564,7 @@ public class Software extends javax.swing.JFrame {
         TimerBtn.setBackground(new java.awt.Color(74, 31, 61));
         TimerBtn.setFont(new java.awt.Font("Segoe UI", 1, 12));
         TimerBtn.setForeground(new java.awt.Color(255, 255, 255));
-        TimerBtn.setText("Timer");
+        TimerBtn.setText("Clone");
         TimerBtn.setToolTipText("");
         TimerBtn.setBorder(null);
         TimerBtn.setBorderPainted(false);
