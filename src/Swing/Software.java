@@ -710,10 +710,20 @@ public class Software extends javax.swing.JFrame {
     }
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {
-        int confirmExit = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the app ? It will stop the synchronization.", "Exit Program Message Box", JOptionPane.YES_NO_OPTION);
-        
+        int confirmExit = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the app ? This will stop the synchronization.", "Exit Program Message Box", JOptionPane.YES_NO_OPTION);
+
         if(confirmExit == JOptionPane.YES_OPTION){
-            System.exit(0);
+            if(launchSynchro.getText() == "PAUSE"){
+                sync1.interrupt();
+                sync2.interrupt();
+            }
+            if(launchTimingSynchro.getText() == "PAUSE"){
+                clone.interrupt();
+            }
+            dispose();
+
+            Menu menu = new Menu();
+            menu.Menu();
         }
     }
 
@@ -846,15 +856,25 @@ public class Software extends javax.swing.JFrame {
     }
 
     private void windowClosing(java.awt.event.WindowEvent evt) {
-        int confirmExit = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the app ? It will stop the synchronization.", "Exit Program Message Box", JOptionPane.YES_NO_OPTION);
-        
+        int confirmExit = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the app ? This will stop the synchronization.", "Exit Program Message Box", JOptionPane.YES_NO_OPTION);
+
         if(confirmExit == JOptionPane.YES_OPTION){
-            System.exit(0);
+            if(launchSynchro.getText() == "PAUSE"){
+                sync1.interrupt();
+                sync2.interrupt();
+            }
+            if(launchTimingSynchro.getText() == "PAUSE"){
+                clone.interrupt();
+            }
+            dispose();
+
+            Menu menu = new Menu();
+            menu.Menu();
         }
     }
 
     private void reduceActionPerformed(java.awt.event.ActionEvent evt) {
-        int confirmExit = JOptionPane.showConfirmDialog(null, "Are you sure you want to reduce the app ? The synchronization will continue in the background.", "Exit Program Message Box", JOptionPane.YES_NO_OPTION);
+        int confirmExit = JOptionPane.showConfirmDialog(null, "Are you sure you want to reduce the app ? The synchronization will continue in the background.", "Reduce Program Message Box", JOptionPane.YES_NO_OPTION);
         
         if(confirmExit == JOptionPane.YES_OPTION){
             this.setVisible(false);
