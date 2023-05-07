@@ -159,8 +159,7 @@ public class Directory {
     }
     public void update() {
         /* Refresh the content of the Directory based on the source folder on disk */
-        Directory newDir = null;
-        newDir = new Directory(this.path);
+        Directory newDir = new Directory(this.path);
         this.docs = newDir.getDocs();
         this.dirs = newDir.getDirs();
         this.updated = true;
