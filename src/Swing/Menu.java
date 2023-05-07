@@ -27,8 +27,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        softwareBtn = new javax.swing.JLabel();
+        infoBtn = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,11 +83,6 @@ public class Menu extends javax.swing.JFrame {
                 usernameFocusLost(evt);
             }
         });
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
 
         ip.setBackground(new java.awt.Color(186, 79, 84));
         ip.setForeground(new java.awt.Color(204, 204, 204));
@@ -99,11 +94,6 @@ public class Menu extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ipFocusLost(evt);
-            }
-        });
-        ip.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ipActionPerformed(evt);
             }
         });
 
@@ -122,11 +112,11 @@ public class Menu extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(186, 79, 84));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setText("                 Log In");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        softwareBtn.setForeground(new java.awt.Color(204, 204, 204));
+        softwareBtn.setText("                 Log In");
+        softwareBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                accessSoftware(evt);
             }
         });
 
@@ -134,19 +124,19 @@ public class Menu extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+            .addComponent(softwareBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+            .addComponent(softwareBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 20));
-        jLabel4.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel4.setText("        ?");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        infoBtn.setFont(new java.awt.Font("Segoe UI", 1, 20));
+        infoBtn.setForeground(new java.awt.Color(0, 51, 204));
+        infoBtn.setText("        ?");
+        infoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                showInformation(evt);
             }
         });
 
@@ -186,7 +176,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(infoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(85, 85, 85))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -211,7 +201,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addComponent(infoBtn)
                 .addGap(34, 34, 34))
         );
 
@@ -245,14 +235,6 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {
-        //
-    }
-
-    private void ipActionPerformed(java.awt.event.ActionEvent evt) {
-        //
-    }
-
     private void usernameFocusGained(java.awt.event.FocusEvent evt) {
         if(username.getText().equals("Username")) {
             username.setText("");
@@ -277,7 +259,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {
+    private void accessSoftware(java.awt.event.MouseEvent evt) {
         if (!(username.getText().isEmpty() || ip.getText().isEmpty()) && !(username.getText().isEmpty() || ip.getText().equals("IP"))) {
             String User = username.getText();
             String IPadress = ip.getText();
@@ -292,7 +274,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {
+    private void showInformation(java.awt.event.MouseEvent evt) {
         info.setVisible(!info.isVisible());
     }
 
@@ -304,8 +286,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField ip;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel softwareBtn;
+    private javax.swing.JLabel infoBtn;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
