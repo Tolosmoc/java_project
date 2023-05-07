@@ -1,6 +1,6 @@
 package Swing;
 
-import Swing.file.*;
+import file.*;
 
 import java.awt.CardLayout;
 import java.io.IOException;
