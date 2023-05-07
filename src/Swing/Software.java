@@ -148,10 +148,10 @@ public class Software extends javax.swing.JFrame {
 
         String SE = System.getProperty("os.name").toLowerCase();
         if((SE.indexOf("win") + SE.indexOf("mac") + SE.indexOf("nux")) == -3){
-            OSicon.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\Swing\\icons\\pc.png"));
+            OSicon.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\Swing\\icons\\pc.png"));
         }
         else {
-            OSicon.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\Swing\\icons\\" + SE.substring(0,3) + ".png"));
+            OSicon.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\Swing\\icons\\" + SE.substring(0,3) + ".png"));
         }
 
         Exit.setBackground(new java.awt.Color(74, 31, 61));
