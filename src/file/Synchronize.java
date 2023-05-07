@@ -20,6 +20,10 @@ public class Synchronize extends Thread {
     private final Directory source;
     private final Directory target;
 
+    public boolean getSate() {return this.state;}
+    public Directory getSource() {return this.source;}
+    public Directory getTarget() {return this.target;}
+
     public Synchronize(String source, String target) {
         this.source = new Directory(source);
         this.target = new Directory(target);
@@ -30,10 +34,6 @@ public class Synchronize extends Thread {
         this.target = source;
         Synchronize.threads.add(this);
     }
-
-    public boolean getSate() {return this.state;}
-    public Directory getSource() {return this.source;}
-    public Directory getTarget() {return this.target;}
 
     public Synchronize inverse() {
         return new Synchronize(this.source, this.target);

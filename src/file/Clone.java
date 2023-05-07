@@ -1,7 +1,6 @@
 package file;
 
 import java.io.File;
-import java.io.IOException;
 
 public class Clone extends Thread {
     private Integer duration;

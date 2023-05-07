@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>136</x>
+      <y>104</y>
+      <w>352</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>Document
+--
+- name: String
+- path: String
+- parent: Directory
+- date: long
+--
++ getName(): String
++ getPath(): String
++ getParent(): Directory
++ getDate(): long
+
++ setParent(parent: Directory): void
++ setDate(date: long): void
+
++ Document(name: String, path: String, parent: Directory, date: long)
++ Document(path: String, parent: Directory)
++ Document(path: String)
+
++ delete(): boolean
++ equals(other: Object): boolean
++ saveTo(path: String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>104</y>
+      <w>264</w>
+      <h>552</h>
+    </coordinates>
+    <panel_attributes>Directory
+--
+- name: String
+- path: String
+- parent: Directory
+- date: long
+- docs: List&lt;Document&gt;
+- dirs: List&lt;Directory&gt;
+- updated: boolean
+--
++ getName(): String
++ getPath(): String
++ getParent(): Directory
++ getDate(): long
++ getDocs(): List&lt;Document&gt;
++ getDirs(): List&lt;Directory&gt;
++ getUpdated(): boolean
+
++ setUpdated(updated: boolean): void
++ setParent(parent: Directory): void
+
++ Directory(path: String, parent: Directory)
++ Directory(path: String)
+
++ removeDoc(document: Document): boolean
++ removeDir(directory: Directory): boolean
+
++ addDoc(document: Document): void
++ addDir(directory: Directory): void
+
++ delete(): boolean
++ containsDoc(name: String): boolean
++ containsDoc(name: String, date: long): boolean
++ containsDir(name: String): boolean
++ containsDir(name: String, date: long): boolean
++ getDocument(name: String): Document
+
++ saveTo(path: String): void
++ cloneTo(path: String): void
++ update(): void
++ scan(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>136</x>
+      <y>400</y>
+      <w>352</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Clone
+--
+- duration: Integer
+- source: Directory
+- target: Directory
+--
++ Clone(source: String, target: String)
++ Clone(duration: Integer, source: String, target: String)
++ run(): void
++ doOnce(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>136</x>
+      <y>544</y>
+      <w>352</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Synchronize
+--
+_- threads: List&lt;Synchronize&gt;_
+
+- source: Directory
+- target: Directory
+--
+_+ getSync(source: Directory): Synchronize_
+
++ getSate(): boolean
++ getSource(): Directory
++ getTarget(): Directory
+
++ Synchronize(source: String, target: String)
++ Synchronize(source: Directory, target: Directory)
+
++ inverse(): Synchronize
++ init(): void
++ run(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>112</x>
+      <y>64</y>
+      <w>680</w>
+      <h>744</h>
+    </coordinates>
+    <panel_attributes>file</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
